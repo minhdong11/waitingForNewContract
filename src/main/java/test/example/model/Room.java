@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Room implements Serializable {
@@ -31,7 +31,7 @@ public class Room implements Serializable {
 	private boolean status;
 
 	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
-	@JsonBackReference
+	@JsonIgnore
 	private List<Booking> booking;
 
 	public long getId() {
@@ -80,5 +80,11 @@ public class Room implements Serializable {
 	public Room() {
 		super();
 	}
+
+	@Override
+	public String toString() {
+		return "Room [id=" + id + ", room=" + room + ", type=" + type + ", status=" + status + "]";
+	}
 	
+
 }

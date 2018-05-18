@@ -172,7 +172,7 @@ public class User implements Serializable{
 
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", firstname=" + firstname + ", lastname=" + lastname + "]";
+		return "User [userId=" + userid + ", username=" + username + ", firstname=" + firstname + ", lastname=" + lastname + "]";
 	}
 
 	public User() {

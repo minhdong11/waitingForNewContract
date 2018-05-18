@@ -10,5 +10,5 @@ public interface RoomService {
 	List<Room> findByStatus(boolean status);
 	List<Room> findByRoomContaining(String room);
 	List<Room> getAll();
-	boolean updateStatus(boolean status);
+	Room statusUpdate(Room room);
 }

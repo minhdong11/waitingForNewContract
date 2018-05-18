@@ -6,13 +6,18 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import test.example.exception.ResourceNotFoundException;
 import test.example.model.Room;
+import test.example.repository.BookingRepository;
 import test.example.repository.RoomRepository;
 import test.example.service.RoomService;
 @Service
 public class RoomServiceImpl implements RoomService{
 	@Autowired
 	RoomRepository roomRepository;
+	
+	@Autowired
+	BookingRepository bookingRepository;
 	
 	@Override
 	public List<Room> findByStatus(boolean status) {
@@ -35,10 +40,20 @@ public class RoomServiceImpl implements RoomService{
 	}
 
 	@Override
-	public boolean updateStatus(boolean status) {
-		
-		return status;
+	public Room statusUpdate(Room room) {
+		Room roomm = roomRepository.findById(room.getId())
+				.orElseThrow(()-> new ResourceNotFoundException("Room", "id", room.getId()));
+		roomm.setStatus(room.isStatus());
+		Room updateStatus = roomRepository.save(roomm);
+		return updateStatus;
 	}
+
+	
+
+	
+
+
+	
 
 
 }
